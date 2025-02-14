@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services") // Se você for usar Firebase Authentication
     kotlin("kapt") // Para Hilt
 }
 
@@ -87,8 +86,4 @@ dependencies {
     // Hilt (se precisar)
     // implementation("com.google.dagger:hilt-android:2.48.1")
     // kapt("com.google.dagger:hilt-compiler:2.48.1")
-
-    // Firebase Authentication (se precisar)
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-    implementation("com.google.firebase:firebase-auth-ktx")
 }
