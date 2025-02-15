@@ -1,0 +1,4 @@
+fun sendEmail(to: String, subject: String, body: String) {
+    // Implementar lógica para enviar e-mail usando uma API
+    // Exemplo: Usar Retrofit para fazer uma chamada POST para a API de envio de e-mail
+} 

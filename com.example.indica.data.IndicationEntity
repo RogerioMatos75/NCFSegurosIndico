@@ -1,0 +1,7 @@
+@Entity(tableName = "indications")
+data class IndicationEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val name: String,
+    val email: String,
+    val phone: String
+) 

@@ -1,0 +1,46 @@
+import android.util.Log
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import com.google.firebase.auth.FirebaseAuth
+
+@Composable
+fun LoginScreen(onLoginSuccess: () -> Unit) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    
+    Column(modifier = Modifier.padding(16.dp)) {
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("E-mail") }
+        )
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Senha") },
+            visualTransformation = PasswordVisualTransformation()
+        )
+        Button(onClick = {
+            authenticateUser(email, password, onLoginSuccess)
+        }) {
+            Text("Login")
+        }
+    }
+}
+
+fun authenticateUser(email: String, password: String, onSuccess: () -> Unit) {
+    val auth = FirebaseAuth.getInstance()
+    auth.signInWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Autenticação bem-sucedida
+                onSuccess()
+            } else {
+                // Tratar erro de autenticação
+                Log.e("Login", "Erro ao autenticar: ${task.exception?.message}")
+            }
+        }
+} 
