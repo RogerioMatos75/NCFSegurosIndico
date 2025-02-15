@@ -1,0 +1,16 @@
+class IndicationRepository(private val indicationDao: IndicationDao) {
+
+    fun insertIndication(indication: IndicationEntity) {
+        // Lógica para inserir a indicação no banco de dados
+        indicationDao.insert(indication)
+    }
+
+    fun getAllIndications(): LiveData<List<IndicationEntity>> {
+        // Lógica para obter todas as indicações
+        return indicationDao.getAllIndications()
+    }
+
+    suspend fun updateIndicationStatus(id: Int, status: String) {
+        indicationDao.updateIndicationStatus(id, status)
+    }
+} 

@@ -1,0 +1,41 @@
+import com.example.indica.network.EmailApi
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+fun sendIndication(name: String, email: String, phone: String, currentUser: UserEntity) {
+    // Armazenar a indicação
+    val indication = IndicationEntity(name = name, email = email, phone = phone)
+    // Adicionar a lógica para armazenar a indicação no banco de dados
+    // Atualizar o desconto do usuário
+    updateUserDiscount(currentUser, 1.0) // Adiciona 1% de desconto
+
+    // Enviar e-mail
+    val emailApi = Retrofit.Builder()
+        .baseUrl("https://api.sendgrid.com/v3/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(EmailApi::class.java)
+
+    val emailRequest = EmailRequest(
+        personalizations = listOf(Personalization(to = listOf(To(email)))),
+        from = From(email = "noreply@ncfseguros.com.br"),
+        subject = "Nova Indicação Recebida",
+        content = listOf(Content(type = "text/plain", value = "Você recebeu uma nova indicação de $name com o e-mail $email e telefone $phone."))
+    )
+
+    emailApi.sendEmail(emailRequest).enqueue(object : retrofit2.Callback<Void> {
+        override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
+            if (response.isSuccessful) {
+                // E-mail enviado com sucesso
+                Log.d("Email", "E-mail enviado com sucesso.")
+            } else {
+                // Tratar erro ao enviar e-mail
+                Log.e("Email", "Erro ao enviar e-mail: ${response.errorBody()?.string()}")
+            }
+        }
+
+        override fun onFailure(call: Call<Void>, t: Throwable) {
+            Log.e("Email", "Falha ao enviar e-mail: ${t.message}")
+        }
+    })
+} 

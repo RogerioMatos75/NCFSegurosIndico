@@ -1,0 +1,11 @@
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "indications")
+data class IndicationEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val name: String,
+    val email: String,
+    val phone: String,
+    var status: String = "pendente" // Status da indicação
+) 
