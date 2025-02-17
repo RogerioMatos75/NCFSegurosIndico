@@ -1,13 +1,13 @@
 # NCFSegurosIndico
 # Indica - Aplicativo de Indicação de Seguros
 
-**Nome do App:** Indica
+**Nome do App:** NCF Seguros Indico
 
-**Conceito:** Aplicativo móvel para clientes da [Nome da Seguradora] indicarem amigos e familiares para contratar seguros.  A cada indicação efetivada, o cliente recebe descontos progressivos em seu próprio seguro.
+**Conceito:** Aplicativo móvel para clientes da NCF Seguros indicarem amigos e familiares para contratar seguros.  A cada indicação efetivada, o cliente recebe descontos progressivos em seu próprio seguro.
 
 **Funcionalidades Principais:**
 
-* **Login/Cadastro:** Autenticação segura e intuitiva para clientes da seguradora, utilizando [método de autenticação, ex: email/senha, login social].
+* **Login/Cadastro:** Autenticação segura e intuitiva para clientes da seguradora, utilizando método de autenticação, ex: email/senha, login social.
 * **Tela de Indicações:** Formulário simples e amigável para o cliente inserir os dados das pessoas a serem indicadas (nome, telefone e e-mail).  Validação de dados para garantir a precisão das informações.
 * **Histórico de Indicações:** Lista detalhada das indicações realizadas pelo cliente, com status claro e conciso para cada indicação (pendente, em análise, efetivada, rejeitada, etc.).  Possibilidade de visualizar detalhes de cada indicação.
 * **Recompensas/Descontos:**  Visão clara e detalhada dos descontos progressivos obtidos pelo cliente com base no número de indicações efetivadas.  Exibição de um resumo dos descontos acumulados e dos descontos a serem alcançados.
