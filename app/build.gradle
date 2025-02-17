@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId "com.ncfseguros.indicaseguro"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+    }
+    // ...
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    // Comente a linha abaixo se ela existir
+    // androidTestImplementation("androidx.compose.ui:ui-test-junit4:some_version")
+    // outras dependências...
+} 
