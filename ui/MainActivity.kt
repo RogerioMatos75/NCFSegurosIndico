@@ -4,17 +4,17 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupNavigation() // Método em camelCase
-        setupUI() // Método em camelCase
+        setupNavigation()
+        setupUI()
     }
 
     private fun setupNavigation() {
-        // Lógica de navegação
+        // Lógica de navegação pode ser movida para uma classe separada
     }
 
     private fun setupUI() {
         setContent {
-            MainScreen() // Composable em PascalCase
+            NavGraph(navController = rememberNavController()) // Usando o NavGraph
         }
     }
 } 
