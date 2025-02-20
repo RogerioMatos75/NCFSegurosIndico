@@ -4,17 +4,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupNavigation()
-        setupUI()
-    }
-
-    private fun setupNavigation() {
-        // Lógica de navegação pode ser movida para uma classe separada
-    }
-
-    private fun setupUI() {
         setContent {
-            NavGraph(navController = rememberNavController()) // Usando o NavGraph
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "loginFragment") {
+                composable("loginFragment") { LoginScreen(navController) }
+                composable("dashboardFragment") { DashboardScreen(navController) }
+            }
         }
     }
 } 
