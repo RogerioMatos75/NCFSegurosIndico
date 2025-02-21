@@ -1,17 +1,30 @@
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.indica.data.auth.AuthResult
+import com.example.indica.data.auth.AuthService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
-    private val _loginState = MutableStateFlow(false)
-    val loginState: StateFlow<Boolean> get() = _loginState
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val authService: AuthService
+) : ViewModel() {
+    private val _loginState = MutableStateFlow<AuthResult>(AuthResult.Loading)
+    val loginState: StateFlow<AuthResult> = _loginState
 
-    fun login(username: String, password: String) {
-        // Lógica de autenticação (exemplo simplificado)
-        if (username == "user" && password == "password") {
-            _loginState.value = true // Login bem-sucedido
-        } else {
-            _loginState.value = false // Falha no login
+    fun login(email: String, password: String) {
+        viewModelScope.launch {
+            _loginState.value = AuthResult.Loading
+            _loginState.value = authService.signIn(email, password)
         }
     }
-} 
+
+    fun signOut() {
+        viewModelScope.launch {
+            authService.signOut()
+        }
+    }
+}
