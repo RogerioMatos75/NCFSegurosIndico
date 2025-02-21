@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NCF Seguros Indica</string>
+    <string name="dashboard">Início</string>
+    <string name="indication">Indicar</string>
+    <string name="history">Histórico</string>
+    <string name="rewards">Recompensas</string>
+    <string name="profile">Perfil</string>
+    <string name="logout">Sair</string>
+    <string name="back">Voltar</string>
+</resources>
