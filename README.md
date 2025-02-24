@@ -58,9 +58,11 @@ O projeto segue os princípios da Clean Architecture e está organizado nas segu
 
 ## 🔐 Autenticação
 O sistema utiliza o Firebase Authentication para gerenciar o acesso dos usuários, implementando:
+- Login com Google
 - Login com e-mail e senha
 - Tratamento de erros de autenticação
 - Mensagens de erro localizadas
+- Persistência de sessão
 
 ## 🧪 Testes
 O projeto inclui:
@@ -69,10 +71,15 @@ O projeto inclui:
 - Testes de integração
 
 ## 📱 Funcionalidades Principais
-- Login de usuários
-- Dashboard administrativo
+- Login de usuários com Google e e-mail/senha
+- Dashboard administrativo com visão geral
+- Feed de notícias e atualizações
+- Banner informativo na tela inicial
 - Gerenciamento de indicações
-- Sistema de navegação intuitivo
+- Sistema de navegação intuitivo com bottom bar
+- Perfil do usuário personalizado
+- Área administrativa protegida
+- Sistema de notificações
 
 ## 🤝 Contribuição
 Para contribuir com o projeto:
