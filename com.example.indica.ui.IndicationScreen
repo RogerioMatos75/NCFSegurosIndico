@@ -1,6 +1,38 @@
-import com.example.indica.network.EmailApi
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import com.example.indica.data.IndicationEntity
+import com.example.indica.data.UserEntity
+
+@Composable
+fun IndicationScreen(currentUser: UserEntity) {
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        TextField(
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Nome") }
+        )
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("E-mail") }
+        )
+        TextField(
+            value = phone,
+            onValueChange = { phone = it },
+            label = { Text("Celular") }
+        )
+        Button(onClick = {
+            sendIndication(name, email, phone, currentUser)
+        }) {
+            Text("Enviar Indicação")
+        }
+    }
+}
 
 fun sendIndication(name: String, email: String, phone: String, currentUser: UserEntity) {
     // Armazenar a indicação
@@ -8,34 +40,9 @@ fun sendIndication(name: String, email: String, phone: String, currentUser: User
     // Adicionar a lógica para armazenar a indicação no banco de dados
     // Atualizar o desconto do usuário
     updateUserDiscount(currentUser, 1.0) // Adiciona 1% de desconto
+}
 
-    // Enviar e-mail
-    val emailApi = Retrofit.Builder()
-        .baseUrl("https://api.sendgrid.com/v3/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(EmailApi::class.java)
-
-    val emailRequest = EmailRequest(
-        personalizations = listOf(Personalization(to = listOf(To(email)))),
-        from = From(email = "noreply@ncfseguros.com.br"),
-        subject = "Nova Indicação Recebida",
-        content = listOf(Content(type = "text/plain", value = "Você recebeu uma nova indicação de $name com o e-mail $email e telefone $phone."))
-    )
-
-    emailApi.sendEmail(emailRequest).enqueue(object : retrofit2.Callback<Void> {
-        override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
-            if (response.isSuccessful) {
-                // E-mail enviado com sucesso
-                Log.d("Email", "E-mail enviado com sucesso.")
-            } else {
-                // Tratar erro ao enviar e-mail
-                Log.e("Email", "Erro ao enviar e-mail: ${response.errorBody()?.string()}")
-            }
-        }
-
-        override fun onFailure(call: Call<Void>, t: Throwable) {
-            Log.e("Email", "Falha ao enviar e-mail: ${t.message}")
-        }
-    })
+fun updateUserDiscount(user: UserEntity, discount: Double) {
+    user.totalDiscount += discount
+    // Lógica para atualizar o desconto do usuário no banco de dados
 } 

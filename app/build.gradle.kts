@@ -1,26 +1,24 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    kotlin("kapt") // Para Hilt
+	alias(libs.plugins.android.application)
+	alias(libs.plugins.kotlin.android)
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.nomedasuaempresa.indicaseguro" // Substitua pelo seu package name
-    compileSdk = 34 // ou a versão mais recente
-
+    namespace = "com.google.ncfsegurosindico"
+    compileSdk = 35
+    
     defaultConfig {
-        applicationId = "com.nomedasuaempresa.indicaseguro" // Substitua pelo seu package name
+        applicationId = "com.google.ncfsegurosindico"
         minSdk = 24
-        targetSdk = 34 // ou a versão mais recente
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
+        
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
-
+    
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -31,59 +29,38 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-        viewBinding = true // Se você precisar usar ViewBinding
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1" // ou a versão mais recente
-    }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+        jvmTarget = "11"
     }
 }
 
 dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation("com.google.dagger:hilt-android:2.55")
+    kapt("com.google.dagger:hilt-compiler:2.55")
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // Room dependencies
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
 
-    // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    // Compose dependencies
+    implementation("androidx.compose.ui:ui:1.7.8")
+    implementation("androidx.compose.material:material:1.7.8")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.7.8")
+    implementation("androidx.navigation:navigation-compose:2.8.7")
 
-    // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-
-    // Room (se precisar)
-    // implementation("androidx.room:room-runtime:2.6.1")
-    // kapt("androidx.room:room-compiler:2.6.1")
-    // implementation("androidx.room:room-ktx:2.6.1") // Coroutines support for Room
-
-    // Hilt (se precisar)
-    // implementation("com.google.dagger:hilt-android:2.48.1")
-    // kapt("com.google.dagger:hilt-compiler:2.48.1")
+    // Testing dependencies
+    testImplementation(libs.junit)
+    testImplementation("org.mockito:mockito-core:5.15.2")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.8")
+    androidTestImplementation("androidx.compose.ui:ui-test-manifest:1.7.8")
 }

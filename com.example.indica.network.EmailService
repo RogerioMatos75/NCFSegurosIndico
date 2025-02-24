@@ -1,17 +1,4 @@
-import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
-
-data class EmailRequest(val personalizations: List<Personalization>, val from: From, val subject: String, val content: List<Content>)
-
-data class Personalization(val to: List<To>)
-data class From(val email: String)
-data class To(val email: String)
-data class Content(val type: String, val value: String)
-
-interface EmailApi {
-    @Headers("Authorization: Bearer YOUR_SENDGRID_API_KEY")
-    @POST("mail/send")
-    fun sendEmail(@Body emailRequest: EmailRequest): Call<Void>
+fun sendEmail(to: String, subject: String, body: String) {
+    // Implementar lógica para enviar e-mail usando uma API
+    // Exemplo: Usar Retrofit para fazer uma chamada POST para a API de envio de e-mail
 } 

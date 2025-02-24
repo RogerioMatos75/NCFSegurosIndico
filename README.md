@@ -1,50 +1,99 @@
-# NCFSegurosIndico
-# Indica - Aplicativo de Indicação de Seguros
+# NCF Seguros Indica
 
-**Nome do App:** NCF Seguros Indico
+## 📱 Sobre o Projeto
+O NCF Seguros Indica é um aplicativo Android desenvolvido para facilitar o processo de indicações de seguros, permitindo um gerenciamento eficiente e intuitivo das indicações de clientes.
 
-**Conceito:** Aplicativo móvel para clientes da NCF Seguros indicarem amigos e familiares para contratar seguros.  A cada indicação efetivada, o cliente recebe descontos progressivos em seu próprio seguro.
+## 🚀 Tecnologias Utilizadas
+- Kotlin
+- Android Jetpack
+  - Compose UI
+  - Navigation
+  - ViewModel
+  - StateFlow
+- Firebase
+  - Authentication
+- Dagger Hilt (Injeção de Dependência)
+- Coroutines
+- Clean Architecture
+- MVVM (Model-View-ViewModel)
 
-**Funcionalidades Principais:**
+## 📋 Pré-requisitos
+- Android Studio Arctic Fox ou superior
+- JDK 11 ou superior
+- Gradle 8.10.2 ou superior
+- Dispositivo/Emulador Android com API 24 (Android 7.0) ou superior
 
-* **Login/Cadastro:** Autenticação segura e intuitiva para clientes da seguradora, utilizando método de autenticação, ex: email/senha, login social.
-* **Tela de Indicações:** Formulário simples e amigável para o cliente inserir os dados das pessoas a serem indicadas (nome, telefone e e-mail).  Validação de dados para garantir a precisão das informações.
-* **Histórico de Indicações:** Lista detalhada das indicações realizadas pelo cliente, com status claro e conciso para cada indicação (pendente, em análise, efetivada, rejeitada, etc.).  Possibilidade de visualizar detalhes de cada indicação.
-* **Recompensas/Descontos:**  Visão clara e detalhada dos descontos progressivos obtidos pelo cliente com base no número de indicações efetivadas.  Exibição de um resumo dos descontos acumulados e dos descontos a serem alcançados.
-* **Perfil do Usuário:**  Acesso às informações pessoais do cliente, dados do seu seguro atual, e opções de configuração da conta (ex: notificações, alteração de senha).
-* **(Opcional) Notificações Push:**  Notificações em tempo real para manter o cliente informado sobre o status das suas indicações e sobre os seus descontos.
+## 🔧 Configuração do Ambiente
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/NCFSegurosIndico.git
+```
 
-**Tecnologias:**
+2. Abra o projeto no Android Studio
 
-* **Plataforma:** Android
-* **Linguagem:** [Java/Kotlin - especifique qual foi utilizada]
-* **Bibliotecas/Frameworks:** [Liste as bibliotecas e frameworks utilizados, ex: Retrofit, Room, etc.]
-* **Backend:** [Especificar a tecnologia utilizada para o backend, se aplicável]
+3. Sincronize o projeto com os arquivos Gradle
 
-**Arquitetura:**
+4. Configure o arquivo google-services.json (necessário para o Firebase)
 
-[Descreva brevemente a arquitetura do aplicativo, ex: MVC, MVVM, etc.]
+5. Execute o aplicativo
 
-**Instruções de Instalação e Execução:**
+## 🏗️ Arquitetura do Projeto
+O projeto segue os princípios da Clean Architecture e está organizado nas seguintes camadas:
 
-1.  [Instruções para clonar o repositório]
-2.  [Instruções para configurar o ambiente de desenvolvimento]
-3.  [Instruções para construir e executar o aplicativo]
+- **data**: Implementação dos repositórios e fontes de dados
+  - auth: Serviços de autenticação
+  - repository: Implementação dos repositórios
 
-**Contribuições:**
+- **domain**: Regras de negócio e entidades
+  - models: Modelos de domínio
+  - repository: Interfaces dos repositórios
+  - usecase: Casos de uso da aplicação
 
-[Informações sobre como contribuir para o projeto]
+- **ui**: Interface do usuário
+  - screens: Telas do aplicativo
+  - navigation: Configuração de navegação
+  - theme: Estilos e temas
 
-**Licença:**
+- **viewmodel**: ViewModels para gerenciamento de estado
 
-[Especificar a licença do projeto]
+## 🔐 Autenticação
+O sistema utiliza o Firebase Authentication para gerenciar o acesso dos usuários, implementando:
+- Login com Google
+- Login com e-mail e senha
+- Tratamento de erros de autenticação
+- Mensagens de erro localizadas
+- Persistência de sessão
 
+## 🧪 Testes
+O projeto inclui:
+- Testes unitários para ViewModels
+- Testes de interface do usuário (UI Tests)
+- Testes de integração
 
-**Autores:**
+## 📱 Funcionalidades Principais
+- Login de usuários com Google e e-mail/senha
+- Dashboard administrativo com visão geral
+- Feed de notícias e atualizações
+- Banner informativo na tela inicial
+- Gerenciamento de indicações
+- Sistema de navegação intuitivo com bottom bar
+- Perfil do usuário personalizado
+- Área administrativa protegida
+- Sistema de notificações
 
-[Listar os autores do projeto]
+## 🤝 Contribuição
+Para contribuir com o projeto:
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
+## 📄 Licença
+Este projeto está sob a licença [MIT](https://opensource.org/licenses/MIT).
 
-**Contato:**
+## 📞 Contato
+NCF Seguros - [Website](https://www.ncfseguros.com.br)
 
-[Informações de contato para dúvidas ou suporte]
+---
+Desenvolvido com ❤️ por Rogerio Matos/Regina Reine

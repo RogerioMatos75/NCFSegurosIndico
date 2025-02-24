@@ -1,6 +1,6 @@
 pluginManagement {
 	repositories {
-		google() {
+		google {
 			content {
 				includeGroupByRegex("com\\.android.*")
 				includeGroupByRegex("com\\.google.*")
@@ -14,17 +14,11 @@ pluginManagement {
 dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
-		google() {
-			content {
-				includeGroupByRegex("com\\.android.*")
-				includeGroupByRegex("com\\.google.*")
-				includeGroupByRegex("androidx.*")
-			}
-		}
+		google()
 		mavenCentral()
 	}
 }
 
-rootProject.name = "com.ncfseguros.indicaseguro"
+rootProject.name = "NCFSegurosIndico"
 include(":app")
  
