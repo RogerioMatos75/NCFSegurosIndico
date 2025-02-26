@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:119118038968:android:47458720d359188cfc314d",
+        "mobilesdk_app_id": "1:119118038968:android:f50817c3dbbe550ffc314d",
         "android_client_info": {
-          "package_name": "com.google.NFCSegurosIndico"
+          "package_name": "com.ncf.seguros.indico"
         }
       },
       "oauth_client": [],
