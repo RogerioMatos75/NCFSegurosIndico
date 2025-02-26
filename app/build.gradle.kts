@@ -3,14 +3,15 @@ plugins {
 	alias(libs.plugins.kotlin.android)
     id("com.google.dagger.hilt.android")
     kotlin("kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.google.ncfsegurosindico"
+    namespace = "com.ncf.seguros.indico"
     compileSdk = 35
     
     defaultConfig {
-        applicationId = "com.google.ncfsegurosindico"
+        applicationId = "com.ncf.seguros.indico"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

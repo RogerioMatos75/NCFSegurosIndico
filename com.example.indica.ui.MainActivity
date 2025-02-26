@@ -1,0 +1,3 @@
+// Após o login bem-sucedido
+startActivity(Intent(this, AdminDashboardActivity::class.java))
+finish() // Opcional: fecha a tela de login 

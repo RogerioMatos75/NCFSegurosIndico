@@ -1,0 +1,16 @@
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+
+@Dao
+interface IndicationDao {
+    @Insert
+    suspend fun insert(indication: IndicationEntity)
+
+    @Query("SELECT * FROM indications")
+    fun getAllIndications(): LiveData<List<IndicationEntity>>
+
+    @Query("UPDATE indications SET status = :status WHERE id = :id")
+    suspend fun updateIndicationStatus(id: Int, status: String)
+} 

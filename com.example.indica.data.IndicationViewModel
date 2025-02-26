@@ -1,0 +1,17 @@
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+
+class IndicationViewModel(private val repository: IndicationRepository) : ViewModel() {
+
+    fun getAllIndications(): LiveData<List<IndicationEntity>> {
+        return repository.getAllIndications()
+    }
+
+    fun insertIndication(indication: IndicationEntity) {
+        viewModelScope.launch {
+            repository.insertIndication(indication)
+        }
+    }
+} 
