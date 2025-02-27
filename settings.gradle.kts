@@ -19,6 +19,6 @@ dependencyResolutionManagement {
 	}
 }
 
-rootProject.name = "SeuProjeto"
+rootProject.name = "NCFSegurosIndico"
 include(":app")
  

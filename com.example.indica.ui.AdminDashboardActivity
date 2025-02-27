@@ -1,0 +1,35 @@
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.indica.data.IndicationRepository
+import com.example.indica.data.IndicationViewModel
+
+class AdminDashboardActivity : ComponentActivity() {
+    private lateinit var indicationViewModel: IndicationViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text("Painel de Administração", style = MaterialTheme.typography.h5)
+
+                val indications by indicationViewModel.getAllIndications().observeAsState(emptyList())
+
+                LazyColumn {
+                    items(indications) { indication ->
+                        Text("Nome: ${indication.name}, E-mail: ${indication.email}, Telefone: ${indication.phone}")
+                    }
+                }
+            }
+        }
+
+        indicationViewModel = ViewModelProvider(this).get(IndicationViewModel::class.java)
+    }
+} 
